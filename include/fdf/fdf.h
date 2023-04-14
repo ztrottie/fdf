@@ -6,13 +6,14 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:18:01 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/10 12:19:44 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/14 10:54:55 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "common.h"
+# include "../../lib/libft/libft.h"
+# include "../../lib/MLX42/include/MLX42/MLX42.h"
 
 #endif
