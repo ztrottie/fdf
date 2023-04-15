@@ -70,7 +70,8 @@ STR_SRCS	=	ft_split.c \
 				ft_strnstr.c \
 				ft_strrchr.c \
 				ft_strtrim.c \
-				ft_substr.c
+				ft_substr.c \
+				ft_word_count.c
 
 WRITE_SRCS	=	ft_putchar_fd.c \
 				ft_putendl_fd.c \

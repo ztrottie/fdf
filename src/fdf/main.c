@@ -6,22 +6,22 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:17:54 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/14 10:54:15 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/15 14:09:35 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
-#define HEIGHT 480
-#define WIDTH 740
+#include "../../include/fdf.h"
 
 int	main(int argc, char **argv)
 {
+	t_fdf var;
 	mlx_t *mlx;
 	
-	if (argc != 2)
+	if (args_error(argc, argv))
 		return (0);
-	argv = 0;
-	mlx = mlx_init(WIDTH, HEIGHT, "fdf", 1);
+	var.map = argv[1];
+	get_coords_amount(&var);
+	mlx = mlx_init(WIDTH, HEIGHT, "fdf", 0);
 	if (!mlx)
 		exit(0);
 	mlx_loop(mlx);

@@ -5,7 +5,6 @@ INCDIR			=	include/
 LIBDIR			=	lib/
 
 FDF_DIR			=	src/fdf/
-BONUS_DIR		=	src/bonus/
 
 LIBMLX			=	./lib/MLX42
 HEADERS			=	-I ./include -I $(LIBMLX)/include
@@ -16,7 +15,9 @@ LIBFT			=	$(LIBFTDIR)/libft.a
 CC				=	gcc
 CFLAGS			=	-Wextra -Wall -Werror -Wunreachable-code -Ofast
 
-FDF_SRCS		=	main.c
+FDF_SRCS		=	main.c \
+					error.c \
+					maps.c
 
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
 
