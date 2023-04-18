@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:18:01 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/18 15:47:12 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/18 18:25:38 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
 # include <unistd.h>
+# include <math.h>
 # include <fcntl.h>
 # include <errno.h>
 
@@ -28,6 +29,7 @@ typedef struct s_fdf
 	mlx_image_t	*img;
 	char		*map;
 	int			**coords;
+	int			total_coord;
 	int			map_height;
 	int			map_width;
 }	t_fdf;
@@ -39,6 +41,6 @@ void	set_backgroud(t_fdf *var);
 char	**split_get_next_line(int fd, char split);
 size_t	ft_strlen_double(char **str);
 void	parse_map(t_fdf	*var);
-void	get_coords(t_fdf *var);
+void	init_coords(t_fdf *var);
 
 #endif

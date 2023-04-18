@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 13:38:11 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/18 15:37:52 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/18 18:23:57 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,17 @@ void	parse_map(t_fdf	*var)
 	while (str != NULL)
 	{
 		if (len != ft_strlen_double(str))
+		{
 			ft_exit("Lines should all have the amount of points\n", var, 0);
+			ft_x2free((void **)str);
+		}
 		if (point_parse(str, len) == 0)
+		{
 			ft_exit("Error in the map! All points should be integers\n", var, 0);
+			ft_x2free((void **)str);
+		}
 		var->map_height++;
+		ft_x2free((void **)str);
 		str = split_get_next_line(fd, ' ');
 	}
 	var->map_width = len;
