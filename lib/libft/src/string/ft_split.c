@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 18:07:34 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/15 14:19:15 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:35:07 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**ft_split(char const *s, char c)
 
 	ptr = (char **)ft_calloc(ft_word_count(s, c), sizeof(char *));
 	if (!s || !ptr)
-		return (0);
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (s[i])

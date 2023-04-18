@@ -18,13 +18,15 @@ COMP_SRCS	=	ft_isalnum.c \
 				ft_isalpha.c \
 				ft_isascii.c \
 				ft_isdigit.c \
-				ft_isprint.c
+				ft_isprint.c \
+				ft_isint.c
 
 
 CONV_SRCS	=	ft_atoi.c \
 				ft_itoa.c \
 				ft_tolower.c \
-				ft_toupper.c
+				ft_toupper.c \
+				ft_liatoi.c
 
 GET_SRCS	=	get_next_line_utils.c \
 				get_next_line.c

@@ -17,7 +17,11 @@ CFLAGS			=	-Wextra -Wall -Werror -Wunreachable-code -Ofast
 
 FDF_SRCS		=	main.c \
 					error.c \
-					maps.c
+					maps.c \
+					image.c \
+					exit.c \
+					utils.c \
+					coords.c
 
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
 
@@ -47,6 +51,6 @@ fclean: clean
 	@rm -f $(NAME)
 	@$(MAKE) -C $(LIBFTDIR) fclean
 
-re: clean all
+re: fclean all
 
 .PHONY: all, clean, fclean, re, libmlx, libft

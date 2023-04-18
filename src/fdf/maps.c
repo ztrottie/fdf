@@ -6,52 +6,71 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 13:38:11 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/15 15:24:39 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:37:52 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-int	open_map(char *map)
+/// @brief open_map is a function that add the directory maps/ in front on the 
+/// args and then open it, Open function is secured.
+/// @param var fdf main structure.
+/// @return the fd number of the file opened or exit the program safely if 
+///the map doesn't exist.
+int	open_map(t_fdf *var)
 {
 	int 	fd;
 	char	*tmp;
 	
-	if (!map)
+	if (!var->map)
 		return (-1);
-	tmp = ft_strjoin("maps/", map);
+	tmp = ft_strjoin("maps/", var->map);
 	fd = open(tmp, O_RDWR);
 	ft_free(tmp);
 	if (fd < 0)
-	{
-		perror(map);
-		exit(errno);
-	}
+		ft_exit(var->map, var, 0);
 	return (fd);
 }
 
-int	get_coords_amount(t_fdf *var)
+/// @brief point_parse function verify every point from the line that he got
+/// and check if its a int
+/// @param points double pointer of points to parse
+/// @param len the len of the line to parse
+/// @return return 1 if the line is all integers and 0 if there is something unexepected
+static int	point_parse(char **points, size_t len)
 {
-	int		fd;
-	int		len;
-	char	*str;
+	size_t	i;
 
-	fd = open_map(var->map);
-	str = get_next_line(fd);
-	len = 0;
-	while (str != NULL)
+	i = 0;
+	while(i < len - 1)
 	{
-		len += (ft_word_count(str, ' ') - 1);
-		ft_printf("%d\n", ft_word_count(str, ' ') - 1);
-		str = get_next_line(fd);
+		if (ft_isint(points[i]))
+			return (0);
+		i++;
 	}
-	close(fd);
-	ft_printf("%d\n", len);
-	return (len);
+	return (1);
 }
 
-void	get_coords(t_fdf *var)
+/// @brief the parse map funtion handle all the parsing of the *.fdf file passed as arguments
+/// @param var fdf main structure
+void	parse_map(t_fdf	*var)
 {
-	var->coords = ft_calloc(get_coords_amount(var), sizeof(int *));
-	
+	int		fd;
+	size_t	len;
+	char	**str;
+
+	fd = open_map(var);
+	str = split_get_next_line(fd, ' ');
+	len = ft_strlen_double(str);
+	while (str != NULL)
+	{
+		if (len != ft_strlen_double(str))
+			ft_exit("Lines should all have the amount of points\n", var, 0);
+		if (point_parse(str, len) == 0)
+			ft_exit("Error in the map! All points should be integers\n", var, 0);
+		var->map_height++;
+		str = split_get_next_line(fd, ' ');
+	}
+	var->map_width = len;
+	close(fd);
 }

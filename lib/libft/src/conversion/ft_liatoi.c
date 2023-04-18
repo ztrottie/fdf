@@ -1,15 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   ft_liatoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 15:26:10 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/15 15:34:43 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/18 13:08:44 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/18 13:25:36 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf.h"
+long int	ft_li_atoi(const char *str)
+{
+	long int	nb;
+	int			sign;
+	int			i;
 
-void	set_image_black()
+	nb = 0;
+	i = 0;
+	sign = 1;
+	if (str[i] && str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		nb *= 10;
+		nb += str[i] - 48;
+		i++;
+	}
+	return (nb * sign);
+}

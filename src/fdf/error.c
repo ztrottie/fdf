@@ -6,12 +6,16 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 09:04:51 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/15 09:29:34 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:40:57 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
+/// @brief argv_error verify that the only arguments passed is correctly parse
+/// so that its *.fdf
+/// @param argv arguments value from main function
+/// @return return 1 if an error is found or 0 if everything is good
 static int	argv_error(char **argv)
 {
 	int		error;
@@ -32,6 +36,11 @@ static int	argv_error(char **argv)
 	return (error);
 }
 
+/// @brief args_error function handle verify that there is no error in the
+/// arguments passed
+/// @param argc number of arguments
+/// @param argv arguments value from main function
+/// @return return 1 if and error is found or 0 if everything is good
 int	args_error(int argc, char **argv)
 {
 	if (argc > 2)
