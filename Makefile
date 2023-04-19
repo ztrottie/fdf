@@ -21,7 +21,8 @@ FDF_SRCS		=	main.c \
 					image.c \
 					exit.c \
 					utils.c \
-					coords.c
+					coords.c \
+					list.c
 
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
 

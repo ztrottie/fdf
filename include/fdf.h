@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:18:01 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/19 15:03:48 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:29:07 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@
 # include <fcntl.h>
 # include <errno.h>
 
+typedef struct s_map
+{
+	char			**line;
+	struct	s_map	*next;
+}	t_map;
+
+
 typedef struct s_coords
 {
 	int	x;
@@ -34,7 +41,8 @@ typedef struct s_fdf
 {
 	mlx_t				*mlx;
 	mlx_image_t			*img;
-	char				*map;
+	char				*file;
+	struct	s_map		*map;
 	struct	s_coords	*coords;
 	int					total_coord;
 	int					map_height;
@@ -49,5 +57,7 @@ char	**split_get_next_line(int fd, char split);
 size_t	ft_strlen_double(char **str);
 void	parse_map(t_fdf	*var);
 void	init_coords(t_fdf *var);
+void	add_line_end(t_fdf *var, char **line);
+void	convert_map(t_fdf *var);
 
 #endif

@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 11:05:23 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/19 15:44:36 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/19 16:58:31 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/19 17:28:52 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
 
-/// @brief ft_exit is the function that exit safely and without leaks 
-/// the program anywhere in case of an error
-/// @param error the reason of the error
-/// @param var fdf main struct to be properly freed
-void	ft_exit(char *error, t_fdf *var, int type)
+void	add_line_end(t_fdf *var, char **line)
 {
-	ft_printf("wtf\n");
-	if (var->mlx)
-		mlx_close_window(var->mlx);
-	if (type == 1)
+	t_map	*ptr;
+
+	if (!var->map)
 	{
-		perror(error);
-		exit(errno);
+		var->map = ft_calloc(1, sizeof(t_map));
+		var->map->line = line;
 	}
-	ft_putstr_fd(error, 2);
-	exit(0);
+	else
+	{
+		ptr = var->map;
+		while (ptr->next != NULL)
+			ptr = ptr->next;
+		ptr->next = ft_calloc(1, sizeof(t_map));
+		ptr->next->line = line;
+	}
 }

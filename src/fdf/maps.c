@@ -6,11 +6,26 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 13:38:11 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/19 13:27:23 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:31:22 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf.h"
+
+void	convert_map(t_fdf *var)
+{
+	int		fd;
+	char	**line;
+	
+	fd = open_map(var);
+	line = split_get_next_line(fd, ' ');
+	while (line != NULL)
+	{
+		add_line_end(var, line);
+		line = split_get_next_line(fd, ' ');
+	}
+	close(fd);
+}
 
 /// @brief open_map is a function that add the directory maps/ in front on the 
 /// args and then open it, Open function is secured.
@@ -22,13 +37,13 @@ int	open_map(t_fdf *var)
 	int 	fd;
 	char	*tmp;
 	
-	if (!var->map)
+	if (!var->file)
 		return (-1);
-	tmp = ft_strjoin("maps/", var->map);
+	tmp = ft_strjoin("maps/", var->file);
 	fd = open(tmp, O_RDWR);
 	ft_free(tmp);
 	if (fd < 0)
-		ft_exit(var->map, var, 0);
+		ft_exit(var->file, var, 0);
 	return (fd);
 }
 
@@ -55,30 +70,20 @@ static int	point_parse(char **points, size_t len)
 /// @param var fdf main structure
 void	parse_map(t_fdf	*var)
 {
-	int		fd;
 	size_t	len;
-	char	**str;
+	t_map	*ptr;
 
-	fd = open_map(var);
-	str = split_get_next_line(fd, ' ');
-	len = ft_strlen_double(str);
-	while (str != NULL)
+	ptr = var->map;
+	len = ft_strlen_double(ptr->line);
+	while (ptr != NULL)
 	{
-		if (len != ft_strlen_double(str))
-		{
+		if (len != ft_strlen_double(ptr->line))
 			ft_exit("Lines should all have the amount of points\n", var, 0);
-			ft_x2free((void **)str);
-		}
-		if (point_parse(str, len) == 0)
-		{
+		if (point_parse(ptr->line, len) == 0)
 			ft_exit("Error in the map! All points should be integers\n", var, 0);
-			ft_x2free((void **)str);
-		}
 		var->map_height++;
-		ft_x2free((void **)str);
-		str = split_get_next_line(fd, ' ');
+		ptr = ptr->next;
 	}
 	var->map_width = len;
 	ft_printf("%d:%d\n", var->map_width, var->map_height);
-	close(fd);
 }

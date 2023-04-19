@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:17:54 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/19 15:21:49 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:42:53 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 void	init_variables(char **argv, t_fdf *var)
 {
 	ft_bzero(var, sizeof(t_fdf));
-	var->map = argv[1];
+	var->file = argv[1];
+	convert_map(var);
 }
 
 void	my_keyhook(mlx_key_data_t keydata, void *param)
@@ -28,13 +29,20 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 
 	var = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		ft_exit("exiting program safely\n", var, 1);
+		exit(0);
 }
 
-/*void	print_points(t_fdf *var)
+void	print_points(t_fdf *var)
 {
+	int	i;
 	
-}*/
+	i = 0;
+	while (i < var->total_coord)
+	{
+		mlx_put_pixel(var->img, var->coords[i].x + 100, var->coords[i].z + 100, 0xFFFFFFFF);
+		i++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -44,14 +52,13 @@ int	main(int argc, char **argv)
 		return (0);
 	init_variables(argv, &var);
 	parse_map(&var);
-	var.mlx = mlx_init(WIDTH, HEIGHT, "fdf", 0);
-	if (!var.mlx)
-		ft_exit("MLX_INIT\n", &var, 0);
 	init_coords(&var);
+	var.mlx = mlx_init(WIDTH, HEIGHT, "fdf", 0);
+	if (var.mlx == NULL)
+		ft_exit("MLX_INIT\n", &var, 0);
 	set_backgroud(&var);
-	//print_points(&var);
+	print_points(&var);
 	mlx_key_hook(var.mlx, my_keyhook, &var);
-	ft_printf("wtf\n");
 	mlx_loop(var.mlx);
 	mlx_terminate(var.mlx);
 }
