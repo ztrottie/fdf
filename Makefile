@@ -37,7 +37,7 @@ libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 $(NAME): $(FDF_OBJS)
-	@$(CC) $(FDF_OBJS) $(LIBFT) $(LIBS) $(HEADERS) -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
+	@$(CC) $(FDF_OBJS) $(LIBFT) $(LIBS) $(HEADERS) -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit -o $(NAME)
 
 $(BINDIR):
 	@mkdir -p bin

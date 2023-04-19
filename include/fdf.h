@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:18:01 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/18 18:25:38 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:03:48 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,22 @@
 # include <fcntl.h>
 # include <errno.h>
 
+typedef struct s_coords
+{
+	int	x;
+	int	y;
+	int	z;
+}	t_coords;
+
 typedef struct s_fdf
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	char		*map;
-	int			**coords;
-	int			total_coord;
-	int			map_height;
-	int			map_width;
+	mlx_t				*mlx;
+	mlx_image_t			*img;
+	char				*map;
+	struct	s_coords	*coords;
+	int					total_coord;
+	int					map_height;
+	int					map_width;
 }	t_fdf;
 
 int		args_error(int argc, char **argv);

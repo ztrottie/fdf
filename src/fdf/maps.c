@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 13:38:11 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/18 18:23:57 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:27:23 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	parse_map(t_fdf	*var)
 		str = split_get_next_line(fd, ' ');
 	}
 	var->map_width = len;
+	ft_printf("%d:%d\n", var->map_width, var->map_height);
 	close(fd);
 }
