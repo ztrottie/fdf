@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:46:00 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/19 17:43:15 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:17:47 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void	init_coords(t_fdf *var)
 		z++;
 	}
 	for(i = 0; i < var->total_coord; i++)
-		ft_printf("x:%d y:%d z:%d\n", var->coords[i].x, var->coords[i].y, var->coords[i].z);
+		ft_printf("[%d] x:%d y:%d z:%d\n", i, var->coords[i].x, var->coords[i].y, var->coords[i].z);
 }
