@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 15:26:10 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/19 12:53:13 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:57:05 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	set_image(t_fdf *var)
 	var->img = mlx_new_image(var->mlx, WIDTH, HEIGHT);
 	if (!var->img)
 		ft_exit("NEW IMAGE", var, 0);
-	mlx_image_to_window(var->mlx, var->img, 0, 0);
 }
 
 /// @brief set_backgroud fucntion just set the backgroud in black 
