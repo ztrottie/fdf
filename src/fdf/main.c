@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:17:54 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/20 18:09:05 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/24 11:08:04 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,11 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 void	print_points(t_fdf *var)
 {
 	int	i;
-	int	x;
-	int	y;
-	
+
 	i = 0;
 	while (i < var->total_coord)
 	{
-		x = (sqrt(2)/2) * (var->coords[i].x + var->coords[i].z) + 300;
-		y = (sqrt(2)/2) * (var->coords[i].x/2 - var->coords[i].y + var->coords[i].z/2) + 100;
-		mlx_put_pixel(var->img, x, y, 0xFFFFFFFF);
+		mlx_put_pixel(var->img, var->coords[i].x, var->coords[i].z, 0xFFFFFFFF);
 		i++;
 	}
 	mlx_image_to_window(var->mlx, var->img, 0, 0);

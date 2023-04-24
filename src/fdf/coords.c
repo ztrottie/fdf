@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:46:00 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/20 16:35:18 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/24 11:06:28 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	init_coords(t_fdf *var)
 {
 	t_map	*ptr;
 	int		i;
-	int		z;
+	int		y;
 	int		x;
 	
 	var->total_coord = var->map_width * var->map_height;
 	var->coords = (t_coords *)ft_calloc(var->total_coord, sizeof(t_coords));
-	z = 0;
+	y = 0;
 	i = 0;
 	ptr = var->map;
 	while (ptr != NULL)
@@ -30,13 +30,13 @@ void	init_coords(t_fdf *var)
 		while (x < var->map_width)
 		{
 			var->coords[i].x = x * 30;
-			var->coords[i].y = ft_atoi(ptr->line[x]) * 30;
-			var->coords[i].z = z * 30;
+			var->coords[i].y = y * 30;
+			var->coords[i].z = ft_atoi(ptr->line[x]) * 30;
 			x++;
 			i++;
 		}
 		ptr = ptr->next;
-		z++;
+		y++;
 	}
 	for(i = 0; i < var->total_coord; i++)
 		ft_printf("[%d] x:%d y:%d z:%d\n", i, var->coords[i].x, var->coords[i].y, var->coords[i].z);
