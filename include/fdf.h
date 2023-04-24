@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:18:01 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/19 17:29:07 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:13:00 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_fdf
 	char				*file;
 	struct	s_map		*map;
 	struct	s_coords	*coords;
+	int					x_mod;
+	int					y_mod;
 	int					total_coord;
 	int					map_height;
 	int					map_width;
@@ -59,5 +61,6 @@ void	parse_map(t_fdf	*var);
 void	init_coords(t_fdf *var);
 void	add_line_end(t_fdf *var, char **line);
 void	convert_map(t_fdf *var);
+void	print_points(t_fdf *var);
 
 #endif
