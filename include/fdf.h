@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:18:01 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/24 17:13:00 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:07:39 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,13 @@ typedef struct s_fdf
 	char				*file;
 	struct	s_map		*map;
 	struct	s_coords	*coords;
+	struct	s_coords	*points;
 	int					x_mod;
 	int					y_mod;
+	int					y_min;
+	int					y_max;
+	int					x_min;
+	int					x_max;
 	int					total_coord;
 	int					map_height;
 	int					map_width;

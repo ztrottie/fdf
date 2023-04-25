@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:05:23 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/19 15:44:36 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:55:41 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 /// @param var fdf main struct to be properly freed
 void	ft_exit(char *error, t_fdf *var, int type)
 {
-	ft_printf("wtf\n");
 	if (var->mlx)
 		mlx_close_window(var->mlx);
 	if (type == 1)

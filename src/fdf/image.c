@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 15:26:10 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/20 15:57:05 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:56:53 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ void	set_backgroud(t_fdf *var)
 	int	x;
 	int	y;
 
-	if (!var->img)
-		set_image(var);
+	if (var->img)
+		mlx_delete_image(var->mlx, var->img);
+	set_image(var);
 	y = 0;
 	while (y < HEIGHT)
 	{

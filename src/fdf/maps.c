@@ -6,7 +6,7 @@
 /*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 13:38:11 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/24 17:28:52 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:57:30 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	open_map(t_fdf *var)
 	fd = open(tmp, O_RDWR);
 	ft_free(tmp);
 	if (fd < 0)
-		ft_exit(var->file, var, 0);
+		ft_exit(var->file, var, 1);
 	return (fd);
 }
 

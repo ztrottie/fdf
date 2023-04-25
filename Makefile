@@ -22,7 +22,8 @@ FDF_SRCS		=	main.c \
 					exit.c \
 					utils.c \
 					coords.c \
-					list.c
+					list.c \
+					points.c
 
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
 
