@@ -124,13 +124,13 @@ ${BINDIR}%.o: ${WRITE_DIR}%.c
 
 $(NAME): $(COMP_OBJS) $(CONV_OBJS) $(GET_OBJS) $(LIST_OBJS) $(MEM_OBJS) $(PRINT_OBJS) $(STR_OBJS) $(WRITE_OBJS)
 	@ar -rcs  $(NAME) $(COMP_OBJS) $(CONV_OBJS) $(GET_OBJS) $(LIST_OBJS) $(MEM_OBJS) $(PRINT_OBJS) $(STR_OBJS) $(WRITE_OBJS)
- 
+
 clean:  
 	@rm -fr $(BINDIR)
- 
+
 fclean: clean
 	@rm -f $(NAME)
- 
+
 re: fclean all
 
 .PHONY:	all fclean clean re

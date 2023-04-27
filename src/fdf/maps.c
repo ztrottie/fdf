@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
+/*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 13:38:11 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/25 12:57:30 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:05:49 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	convert_map(t_fdf *var)
 {
 	int		fd;
 	char	**line;
-	
+
 	fd = open_map(var);
 	line = split_get_next_line(fd, ' ');
 	while (line != NULL)
@@ -34,9 +34,9 @@ void	convert_map(t_fdf *var)
 ///the map doesn't exist.
 int	open_map(t_fdf *var)
 {
-	int 	fd;
+	int		fd;
 	char	*tmp;
-	
+
 	if (!var->file)
 		return (-1);
 	tmp = ft_strjoin("maps/", var->file);
@@ -51,13 +51,14 @@ int	open_map(t_fdf *var)
 /// and check if its a int
 /// @param points double pointer of points to parse
 /// @param len the len of the line to parse
-/// @return return 1 if the line is all integers and 0 if there is something unexepected
+/// @return return 1 if the line is all integers and 0 if there
+/// is something unexepected
 static int	point_parse(char **points, size_t len)
 {
 	size_t	i;
 
 	i = 0;
-	while(i < len - 1)
+	while (i < len - 1)
 	{
 		if (ft_isint(points[i]))
 			return (0);
@@ -66,7 +67,8 @@ static int	point_parse(char **points, size_t len)
 	return (1);
 }
 
-/// @brief the parse map funtion handle all the parsing of the *.fdf file passed as arguments
+/// @brief the parse map funtion handle all the parsing 
+/// of the *.fdf file passed as arguments
 /// @param var fdf main structure
 void	parse_map(t_fdf	*var)
 {
@@ -78,9 +80,11 @@ void	parse_map(t_fdf	*var)
 	while (ptr != NULL)
 	{
 		if (len != ft_strlen_double(ptr->line))
-			ft_exit("Lines should all have the amount of points\n", var, 0);
+			ft_exit("Lines should all have the amount of points\n", \
+			var, 0);
 		if (point_parse(ptr->line, len) == 0)
-			ft_exit("Error in the map! All points should be integers\n", var, 0);
+			ft_exit("Error in the map! All points should \
+			be integers\n", var, 0);
 		var->map_height++;
 		ptr = ptr->next;
 	}

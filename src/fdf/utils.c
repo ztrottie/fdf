@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
+/*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:50:26 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/19 17:24:29 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:00:06 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**split_get_next_line(int fd, char split)
 
 	tmp = get_next_line(fd);
 	if (!tmp)
-		return(NULL);
+		return (NULL);
 	array = ft_split(tmp, split);
 	ft_free(tmp);
 	return (array);

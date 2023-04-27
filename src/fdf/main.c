@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
+/*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:17:54 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/25 15:14:12 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:59:57 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,13 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	var = param;
 	speed = 5;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		exit(0);
-	if (keydata.key == MLX_KEY_UP && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		var->y_mod -= speed;
-		print_points(var);
-	}
-	if (keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		var->y_mod += speed;
-		print_points(var);
-	}
-	if (keydata.key == MLX_KEY_RIGHT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		var->x_mod += speed;
-		print_points(var);
-	}
-	if (keydata.key == MLX_KEY_LEFT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-	{
-		var->x_mod -= speed;
-		print_points(var);
-	}
+		ft_exit("fdf closed\n", var, 0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_fdf var;
-	
+	t_fdf	var;
+
 	if (args_error(argc, argv))
 		return (0);
 	init_variables(argv, &var);
@@ -69,5 +49,6 @@ int	main(int argc, char **argv)
 	print_points(&var);
 	mlx_key_hook(var.mlx, my_keyhook, &var);
 	mlx_loop(var.mlx);
+	free_all(&var);
 	mlx_terminate(var.mlx);
 }

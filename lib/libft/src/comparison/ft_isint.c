@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ztrottie <zakytrottier@hotmail.fr>         +#+  +:+       +#+        */
+/*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:08:27 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/18 14:23:10 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:59:17 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ int	ft_isint(char *str)
 
 	len = ft_strlen(str);
 	i = 0;
+	if (str[i] == '-' && str[i + 1] != '\0' && i < len)
+		i++;
 	while (i < len)
 	{
 		if (ft_isdigit(str[i]) == 0)
-			return(1);
+			return (1);
 		i++;
 	}
 	if (len > 11)

@@ -23,7 +23,9 @@ FDF_SRCS		=	main.c \
 					utils.c \
 					coords.c \
 					list.c \
-					points.c
+					points.c \
+					lines.c \
+					line_utils.c
 
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
 
@@ -35,7 +37,10 @@ ${BINDIR}%.o: ${FDF_DIR}%.c
 libft:
 	@$(MAKE) -C $(LIBDIR)libft
 
-libmlx:
+$(LIBMLX):
+	@cd $(LIBDIR) && git clone https://github.com/codam-coding-college/MLX42.git
+
+libmlx: $(LIBMLX)
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 $(NAME): $(FDF_OBJS)
