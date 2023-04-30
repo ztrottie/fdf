@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lines.c                                            :+:      :+:    :+:   */
+/*   lines_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 10:31:50 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:35:38 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/30 09:53:27 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/30 17:06:40 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
+#include "../../include/bonus/bonus.h"
 
 t_lines	swap_lines(t_lines lines)
 {
@@ -40,12 +40,11 @@ void	draw_line_low(t_fdf *var, t_lines lines)
 	}
 	draw.p = (2 * draw.dy) - draw.dx;
 	draw.y = lines.y1;
-	while (lines.x1 < lines.x2)
+	while (++lines.x1 < lines.x2 - 1)
 	{
 		if (lines.x1 < WIDTH && draw.y < HEIGHT \
 		&& lines.x1 >= 0 && draw.y >= 0)
-			mlx_put_pixel(var->img, lines.x1, draw.y, 0xFFFFFFFF);
-		lines.x1++;
+			mlx_put_pixel(var->img, lines.x1, draw.y, get_color(lines.z1, var));
 		draw = p_calculus_low(draw);
 	}
 }
@@ -64,12 +63,11 @@ void	draw_line_high(t_fdf *var, t_lines lines)
 	}
 	draw.p = (2 * draw.dx) - draw.dy;
 	draw.x = lines.x1;
-	while (lines.y1 < lines.y2)
+	while (++lines.y1 < lines.y2 - 1)
 	{
 		if (draw.x < WIDTH && lines.y1 < HEIGHT \
 		&& draw.x >= 0 && lines.y1 >= 0)
-			mlx_put_pixel(var->img, draw.x, lines.y1, 0xFFFFFFFF);
-		lines.y1++;
+			mlx_put_pixel(var->img, draw.x, lines.y1, get_color(lines.z1, var));
 		draw = p_calculus_high(draw);
 	}
 }
@@ -106,16 +104,19 @@ void	print_lines(t_fdf *var)
 		x = i - (y * var->map_width);
 		lines.x1 = var->points[i].x;
 		lines.y1 = var->points[i].y;
+		lines.z1 = var->coords[i].z;
 		if (x < var->map_width - 1)
 		{
 			lines.x2 = var->points[i + 1].x;
 			lines.y2 = var->points[i + 1].y;
+			lines.z2 = var->coords[i + 1].z;
 			draw_line(var, lines);
 		}
 		if (y < var->map_height - 1)
 		{
 			lines.x2 = var->points[i + var->map_width].x;
 			lines.y2 = var->points[i + var->map_width].y;
+			lines.z2 = var->coords[i + var->map_width].z;
 			draw_line(var, lines);
 		}
 	}

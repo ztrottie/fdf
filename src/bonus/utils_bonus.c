@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 12:50:26 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:35:57 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/30 09:53:39 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/30 17:01:55 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
+#include "../../include/bonus/bonus.h"
 
 /// @brief split_get_next_line return the split of the get_next_line return
 /// with the split given in args
@@ -41,4 +41,29 @@ size_t	ft_strlen_double(char **str)
 	while (str[len])
 		len++;
 	return (len);
+}
+
+int	get_color(int z, t_fdf *var)
+{
+	int	r;
+	int	b;
+	int	g;
+	int	diff_bot;
+	int	diff_top;
+
+	diff_top = 0;
+	diff_bot = 0;
+	if (var->z_min != 0)
+		diff_bot = 255 / -var->z_min;
+	if (var->z_max != 0)
+		diff_top = 255 / var->z_max;
+	b = z * diff_top;
+	r = -z * diff_bot;
+	g = 255 - (b + r);
+	return (get_rgba(r, g, b, 255));
+}
+
+int get_rgba(int r, int g, int b, int a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
 }

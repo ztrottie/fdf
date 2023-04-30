@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 12:17:54 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:50:47 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/30 09:41:34 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/30 15:12:33 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
+#include "../../include/bonus/bonus.h"
 
 /// @brief init_variables function just set everything in the var struct to 0
 /// and then it set some value with the argv
@@ -20,18 +20,12 @@ static void	init_variables(char **argv, t_fdf *var)
 {
 	ft_bzero(var, sizeof(t_fdf));
 	var->file = argv[1];
+	var->scale = 1;
+	var->x_deg = 35;
+	var->z_deg = 45;
+	var->trans_speed = 5;
+	var->rotation_speed = 1;
 	convert_map(var);
-}
-
-static void	my_keyhook(mlx_key_data_t keydata, void *param)
-{
-	t_fdf	*var;
-	int		speed;
-
-	var = param;
-	speed = 5;
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		ft_exit("fdf closed\n", var, 0);
 }
 
 int	main(int argc, char **argv)
@@ -48,7 +42,9 @@ int	main(int argc, char **argv)
 		ft_exit("MLX_INIT\n", &var, 0);
 	print_points(&var);
 	mlx_key_hook(var.mlx, my_keyhook, &var);
+	mlx_scroll_hook(var.mlx, my_scrollhook, &var);
 	mlx_loop(var.mlx);
 	free_all(&var);
 	mlx_terminate(var.mlx);
 }
+

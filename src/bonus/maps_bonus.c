@@ -1,16 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maps.c                                             :+:      :+:    :+:   */
+/*   maps_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 13:38:11 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:35:50 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/30 09:53:34 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/30 10:00:10 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
+#include "../../include/bonus/bonus.h"
+
+static void	add_line_end(t_fdf *var, char **line)
+{
+	t_map	*ptr;
+
+	if (!var->map)
+	{
+		var->map = ft_calloc(1, sizeof(t_map));
+		var->map->line = line;
+	}
+	else
+	{
+		ptr = var->map;
+		while (ptr->next != NULL)
+			ptr = ptr->next;
+		ptr->next = ft_calloc(1, sizeof(t_map));
+		ptr->next->line = line;
+	}
+}
+
+/// @brief open_map is a function that add the directory maps/ in front on the 
+/// args and then open it, Open function is secured.
+/// @param var fdf main structure.
+/// @return the fd number of the file opened or exit the program safely if 
+///the map doesn't exist.
+static int	open_map(t_fdf *var)
+{
+	int		fd;
+	char	*tmp;
+
+	if (!var->file)
+		return (-1);
+	tmp = ft_strjoin("maps/", var->file);
+	fd = open(tmp, O_RDWR);
+	ft_free(tmp);
+	if (fd < 0)
+		ft_exit(var->file, var, 1);
+	return (fd);
+}
 
 void	convert_map(t_fdf *var)
 {
@@ -25,26 +64,6 @@ void	convert_map(t_fdf *var)
 		line = split_get_next_line(fd, ' ');
 	}
 	close(fd);
-}
-
-/// @brief open_map is a function that add the directory maps/ in front on the 
-/// args and then open it, Open function is secured.
-/// @param var fdf main structure.
-/// @return the fd number of the file opened or exit the program safely if 
-///the map doesn't exist.
-int	open_map(t_fdf *var)
-{
-	int		fd;
-	char	*tmp;
-
-	if (!var->file)
-		return (-1);
-	tmp = ft_strjoin("maps/", var->file);
-	fd = open(tmp, O_RDWR);
-	ft_free(tmp);
-	if (fd < 0)
-		ft_exit(var->file, var, 1);
-	return (fd);
 }
 
 /// @brief point_parse function verify every point from the line that he got

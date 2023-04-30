@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 09:04:51 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:35:25 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/30 09:45:49 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/30 09:46:10 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
+#include "../../include/bonus/bonus.h"
 
 /// @brief argv_error verify that the only arguments passed is correctly parse
 /// so that its *.fdf

@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   line_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 16:58:31 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:35:41 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/30 09:53:24 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/30 09:55:12 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
+#include "../../include/bonus/bonus.h"
 
-void	add_line_end(t_fdf *var, char **line)
+t_draw	p_calculus_low(t_draw draw)
 {
-	t_map	*ptr;
-
-	if (!var->map)
+	if (draw.p > 0)
 	{
-		var->map = ft_calloc(1, sizeof(t_map));
-		var->map->line = line;
+		draw.y = draw.y + draw.yi;
+		draw.p = draw.p + (2 * (draw.dy - draw.dx));
 	}
 	else
+		draw.p = draw.p + 2 * draw.dy;
+	return (draw);
+}
+
+t_draw	p_calculus_high(t_draw draw)
+{
+	if (draw.p > 0)
 	{
-		ptr = var->map;
-		while (ptr->next != NULL)
-			ptr = ptr->next;
-		ptr->next = ft_calloc(1, sizeof(t_map));
-		ptr->next->line = line;
+		draw.x = draw.x + draw.xi;
+		draw.p = draw.p + (2 * (draw.dx - draw.dy));
 	}
+	else
+			draw.p = draw.p + 2 * draw.dx;
+	return (draw);
 }

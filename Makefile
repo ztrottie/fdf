@@ -1,13 +1,16 @@
 NAME			=	fdf
+NAME2			=	fdf_bonus
 
 BINDIR			=	bin/
 INCDIR			=	include/
 LIBDIR			=	lib/
 
 FDF_DIR			=	src/fdf/
+BONUS_DIR		=	src/bonus/
 
 LIBMLX			=	./lib/MLX42
-HEADERS			=	-I ./include -I $(LIBMLX)/include
+HEADERS			=	-I ./include/fdf -I $(LIBMLX)/include
+HEADERS_BONUS	=	-I ./include/bonus -I $(LIBMLX)/includesp
 LIBS			=	$(LIBMLX)/build/libmlx42.a
 LIBFTDIR		=	./lib/libft
 LIBFT			=	$(LIBFTDIR)/libft.a
@@ -27,11 +30,29 @@ FDF_SRCS		=	main.c \
 					lines.c \
 					line_utils.c
 
+BONUS_SRCS		=	main_bonus.c \
+					error_bonus.c \
+					maps_bonus.c \
+					image_bonus.c \
+					exit_bonus.c \
+					utils_bonus.c \
+					coords_bonus.c \
+					list_bonus.c \
+					points_bonus.c \
+					lines_bonus.c \
+					line_utils_bonus.c \
+					matrices_bonus.c \
+					hooks_bonus.c
+
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
+BONUS_OBJS		=	$(addprefix ${BINDIR}, ${BONUS_SRCS:.c=.o})
 
 all: $(BINDIR) libmlx libft $(NAME)
 
 ${BINDIR}%.o: ${FDF_DIR}%.c
+	@${CC} ${CFLAGS} -c $< -o $@
+
+${BINDIR}%.o: ${BONUS_DIR}%.c
 	@${CC} ${CFLAGS} -c $< -o $@
 
 libft:
@@ -48,6 +69,11 @@ $(NAME): $(FDF_OBJS)
 
 $(BINDIR):
 	@mkdir -p bin
+
+bonus: $(BINDIR) libmlx libft $(NAME2)
+
+$(NAME2): $(BONUS_OBJS)
+	@$(CC) $(BONUS_OBJS) $(LIBFT) $(LIBS) $(HEADERS_BONUS) -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit -o $(NAME2)
 
 clean:
 	@rm -fr $(BINDIR)

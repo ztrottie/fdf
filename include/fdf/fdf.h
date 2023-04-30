@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:18:01 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/27 14:59:38 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/30 09:35:05 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # define HEIGHT 720
 # define WIDTH 1280
 
-# include "../lib/libft/libft.h"
-# include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "../../lib/libft/libft.h"
+# include "../../lib/MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   image_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 15:26:10 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:35:29 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/30 09:53:21 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/30 09:54:54 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
+#include "../../include/bonus/bonus.h"
 
 /// @brief set_image function initialize a new image and put it to the window
 /// using MLX42 functions and set the var->img variable;

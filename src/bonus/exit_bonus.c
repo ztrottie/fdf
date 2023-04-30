@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exit_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 11:05:23 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 11:32:34 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/30 09:53:18 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/30 09:54:36 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
+#include "../../include/bonus/bonus.h"
 
 void	free_all(t_fdf *var)
 {
 	t_map	*ptr;
 	t_map	*tmp;
-
+	
 	ft_free(var->coords);
 	ft_free(var->points);
 	ptr = var->map;

@@ -6,11 +6,11 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:32:38 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/27 14:47:18 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/04/30 09:35:32 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf.h"
+#include "../../include/fdf/fdf.h"
 
 t_draw	p_calculus_low(t_draw draw)
 {

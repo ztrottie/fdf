@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coords.c                                           :+:      :+:    :+:   */
+/*   coords_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 15:46:00 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 11:32:39 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/04/30 09:51:39 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/04/30 17:09:28 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf/fdf.h"
+#include "../../include/bonus/bonus.h"
 
-int	get_z_value(char *z)
+int	get_z_value(char *z, t_fdf *var)
 {
 	int	z_value;
-
+	
 	z_value = ft_atoi(z) * 30;
+	if (z_value < var->z_min)
+		var->z_min = z_value;
+	if (z_value > var->z_max)
+		var->z_max = z_value;
 	return (z_value - z_value / 2);
 }
 
@@ -37,9 +41,9 @@ void	init_coords(t_fdf *var)
 		x = 0;
 		while (x < var->map_width)
 		{
-			var->coords[i].x = (x - ((var->map_width - 1) / 2)) * 30;
-			var->coords[i].y = (y - ((var->map_height - 1) / 2)) * 30;
-			var->coords[i].z = get_z_value(ptr->line[x]);
+			var->coords[i].x = ((x - ((var->map_width - 1) / 2)) * 30);
+			var->coords[i].y = ((y - ((var->map_height - 1) / 2)) * 30);
+			var->coords[i].z = get_z_value(ptr->line[x], var);
 			x++;
 			i++;
 		}
