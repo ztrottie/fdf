@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:53:27 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 17:06:40 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/01 12:48:49 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	draw_line_low(t_fdf *var, t_lines lines)
 	}
 	draw.p = (2 * draw.dy) - draw.dx;
 	draw.y = lines.y1;
-	while (++lines.x1 < lines.x2 - 1)
+	while (lines.x1++ < lines.x2)
 	{
 		if (lines.x1 < WIDTH && draw.y < HEIGHT \
 		&& lines.x1 >= 0 && draw.y >= 0)
-			mlx_put_pixel(var->img, lines.x1, draw.y, get_color(lines.z1, var));
+			mlx_put_pixel(var->img, lines.x1, draw.y, get_color(lines.z2, var));
 		draw = p_calculus_low(draw);
 	}
 }
@@ -63,11 +63,11 @@ void	draw_line_high(t_fdf *var, t_lines lines)
 	}
 	draw.p = (2 * draw.dx) - draw.dy;
 	draw.x = lines.x1;
-	while (++lines.y1 < lines.y2 - 1)
+	while (lines.y1++ < lines.y2)
 	{
 		if (draw.x < WIDTH && lines.y1 < HEIGHT \
 		&& draw.x >= 0 && lines.y1 >= 0)
-			mlx_put_pixel(var->img, draw.x, lines.y1, get_color(lines.z1, var));
+			mlx_put_pixel(var->img, draw.x, lines.y1, get_color(lines.z2, var));
 		draw = p_calculus_high(draw);
 	}
 }

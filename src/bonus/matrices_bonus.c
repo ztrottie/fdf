@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 10:07:26 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 16:32:30 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/01 12:58:10 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,14 @@ static t_coords scale(t_coords coords, t_fdf *var)
 
 t_coords	matrice_calculus(t_coords coords, t_fdf *var)
 {
-	coords = rotation_z(coords, var);
-	coords = rotation_y(coords, var);
-	coords = rotation_x(coords, var);
-	coords = scale(coords, var);
-	coords.x += var->x_trans;
-	coords.y += var->y_trans;
-	return (coords);
+	t_coords	result;
+
+	result = coords;
+	result = rotation_z(result, var);
+	result = rotation_y(result, var);
+	result = rotation_x(result, var);
+	result = scale(result, var);
+	result.x += var->x_trans;
+	result.y += var->y_trans;
+	return (result);
 }

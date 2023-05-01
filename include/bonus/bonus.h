@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:42:49 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 16:49:37 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:35:12 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_fdf
 	int					map_width;
 	int					trans_speed;
 	int					rotation_speed;
+	int					proj_selec;
 	int					z_min;
 	int					z_max;
 	int					x_trans;

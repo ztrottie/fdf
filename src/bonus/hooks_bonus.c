@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 12:45:50 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 16:06:45 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:40:48 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,28 @@ static void key_rotate_y(mlx_key_data_t keydata, t_fdf *var)
 	}
 }
 
+void	projection_key(mlx_key_data_t keydata, t_fdf *var)
+{
+	if (keydata.key == MLX_KEY_P && keydata.action == MLX_PRESS)
+	{
+		if (var->proj_selec == 1)
+		{
+			var->proj_selec = 0;
+			var->x_deg = 35;
+			var->z_deg = 45;
+			var->y_deg = 0;
+		}
+		else if (var->proj_selec == 0)
+		{
+			var->proj_selec = 1;
+			var->x_deg = 90;
+			var->y_deg = 0;
+			var->z_deg = 0;
+		}
+		print_points(var);
+	}
+}
+
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_fdf	*var;
@@ -123,6 +145,7 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	var = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		ft_exit("fdf closed\n", var, 0);
+	projection_key(keydata, var);
 	key_translate_up_down(keydata, var);
 	key_translate_left_right(keydata, var);
 	key_rotate_z(keydata, var);

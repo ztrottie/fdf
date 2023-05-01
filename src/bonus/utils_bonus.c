@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:53:39 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 17:01:55 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/01 12:53:42 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,11 @@ size_t	ft_strlen_double(char **str)
 
 int	get_color(int z, t_fdf *var)
 {
-	int	r;
-	int	b;
-	int	g;
-	int	diff_bot;
-	int	diff_top;
-
-	diff_top = 0;
-	diff_bot = 0;
-	if (var->z_min != 0)
-		diff_bot = 255 / -var->z_min;
-	if (var->z_max != 0)
-		diff_top = 255 / var->z_max;
-	b = z * diff_top;
-	r = -z * diff_bot;
-	g = 255 - (b + r);
-	return (get_rgba(r, g, b, 255));
+	if (z == var->z_max)
+		return (get_rgba(255, 0, 0, 255));
+	if (z == 0)
+		return (get_rgba(0, 255, 0, 255));
+	return (get_rgba(255, 255, 255, 255));
 }
 
 int get_rgba(int r, int g, int b, int a)
