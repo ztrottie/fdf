@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:53:27 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/01 12:48:49 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:18:15 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	draw_line_low(t_fdf *var, t_lines lines)
 	{
 		if (lines.x1 < WIDTH && draw.y < HEIGHT \
 		&& lines.x1 >= 0 && draw.y >= 0)
-			mlx_put_pixel(var->img, lines.x1, draw.y, get_color(lines.z2, var));
+			mlx_put_pixel(var->img, lines.x1, draw.y, 4294967295);
 		draw = p_calculus_low(draw);
 	}
 }

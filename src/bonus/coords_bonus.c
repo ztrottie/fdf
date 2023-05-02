@@ -6,21 +6,26 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:51:39 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/01 16:33:29 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:04:37 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/bonus/bonus.h"
 
-int	get_z_value(char *z, t_fdf *var)
+int	get_z_value(char *z, int index, t_fdf *var)
 {
-	int	z_value;
+	int		z_value;
+	char	**str;
 	
-	z_value = ft_atoi(z) * 30;
-	if (z_value < var->z_min)
-		var->z_min = z_value;
-	if (z_value > var->z_max)
-		var->z_max = z_value;
+	str = ft_split(z, ',');
+	z_value = ft_atoi(str[0]) * 30;
+	if (!str[1])
+		var->coords[index].color = WHITE_COLOR;
+	else
+	{
+		var->coords[index].color = convert_color(str[1], var);
+	}
+	ft_free(str);
 	return (z_value - z_value / 2);
 }
 
@@ -43,7 +48,7 @@ void	init_coords(t_fdf *var)
 		{
 			var->coords[i].x = ((x - ((var->map_width - 1) / 2)) * 30);
 			var->coords[i].y = ((y - ((var->map_height - 1) / 2)) * 30);
-			var->coords[i].z = get_z_value(ptr->line[x], var);
+			var->coords[i].z = get_z_value(ptr->line[x], i, var);
 			x++;
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:42:49 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/01 16:35:12 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:03:46 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define BONUS_H
 # define HEIGHT 720
 # define WIDTH 1280
+# define WHITE_COLOR -1
+# define BLACK_COLOR 255
 
 # include "../../lib/libft/libft.h"
 # include "../../lib/MLX42/include/MLX42/MLX42.h"
@@ -56,6 +58,7 @@ typedef struct s_coords
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 }	t_coords;
 
 typedef struct s_fdf
@@ -100,5 +103,6 @@ void 		my_scrollhook(double xdelta, double ydelta, void* param);
 void		my_keyhook(mlx_key_data_t keydata, void *param);
 int 		get_rgba(int r, int g, int b, int a);
 int			get_color(int z, t_fdf *var);
+int			convert_color(char *str, t_fdf *var);
 
 #endif

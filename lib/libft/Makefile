@@ -19,7 +19,8 @@ COMP_SRCS	=	ft_isalnum.c \
 				ft_isascii.c \
 				ft_isdigit.c \
 				ft_isprint.c \
-				ft_isint.c
+				ft_isint.c \
+				ft_strishexa.c
 
 
 CONV_SRCS	=	ft_atoi.c \

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion.h                                       :+:      :+:    :+:   */
+/*   ft_strishexa.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 10:44:07 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/02 14:16:24 by ztrottie         ###   ########.fr       */
+/*   Created: 2023/05/02 14:10:50 by ztrottie          #+#    #+#             */
+/*   Updated: 2023/05/02 14:16:12 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONVERSION_H
-# define CONVERSION_H
+#include "../../includes/conversion.h"
 
-int			ft_atoi(const char *str);
-char		*ft_itoa(int n);
-int			ft_tolower(int c);
-int			ft_toupper(int c);
-long int	ft_li_atoi(const char *str);
-int			ft_strishexa(char *str);
+int	ft_strishexa(char *str)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (str[i])
+	{
+		str[i] = ft_toupper(str[i]);
+		if (!(str[i] >= '0' && str[i] <= '9') \
+		|| !(str[i] >= 'A' && str[i] <= 'F'))
+			return (1);
+		i++;
+	}
+	return (0);
+}

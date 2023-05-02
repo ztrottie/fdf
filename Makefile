@@ -42,7 +42,8 @@ BONUS_SRCS		=	main_bonus.c \
 					lines_bonus.c \
 					line_utils_bonus.c \
 					matrices_bonus.c \
-					hooks_bonus.c
+					hooks_bonus.c \
+					color_bonus.c
 
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
 BONUS_OBJS		=	$(addprefix ${BINDIR}, ${BONUS_SRCS:.c=.o})

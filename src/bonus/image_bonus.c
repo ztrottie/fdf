@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:53:21 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:54:54 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:41:13 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	set_backgroud(t_fdf *var)
 		x = 0;
 		while (x < WIDTH)
 		{
-			mlx_put_pixel(var->img, x, y, 0x000000FF);
+			mlx_put_pixel(var->img, x, y, BLACK_COLOR);
 			x++;
 		}
 		y++;

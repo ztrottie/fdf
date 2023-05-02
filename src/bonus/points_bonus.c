@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:53:37 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/01 12:58:49 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:17:13 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	print_points(t_fdf *var)
 		y = var->points[i].y;
 		z = var->coords[i].z;
 		if (x < WIDTH && y < HEIGHT && x >= 0 && y >= 0)
-			mlx_put_pixel(var->img, x, y, get_color(z, var));
+			mlx_put_pixel(var->img, x, y, 4278190335);
 		i++;
 	}
 	print_lines(var);

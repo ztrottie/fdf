@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:41:34 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/01 11:09:47 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:49:06 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_variables(char **argv, t_fdf *var)
 	var->x_deg = 35;
 	var->z_deg = 45;
 	var->trans_speed = 5;
-	var->rotation_speed = 1;
+	var->rotation_speed = 5;
 	convert_map(var);
 }
 
