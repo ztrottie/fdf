@@ -6,16 +6,11 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:46:50 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/02 16:16:05 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/03 11:16:18 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/bonus/bonus.h"
-
-int	convert_hexa(char *str, t_fdf *var)
-{
-	
-}
 
 int	convert_color(char *str, t_fdf *var)
 {
