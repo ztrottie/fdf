@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:53:34 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/09 10:22:12 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:24:35 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ void	parse_map(t_fdf	*var)
 	len = ft_strlen_double(ptr->line);
 	while (ptr != NULL)
 	{
-		if (len != ft_strlen_double(ptr->line) && )
+		if (len != ft_strlen_double(ptr->line) && PARSE == 0)
 			ft_exit("Lines should all have the amount of points\n", \
 			var, 0);
-		if (point_parse(ptr->line, len) == 0)
+		if (point_parse(ptr->line, len) == 0 && PARSE == 0)
 			ft_exit("Error in the map! All points should \
 			be integers\n", var, 0);
 		var->map_height++;

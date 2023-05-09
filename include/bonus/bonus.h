@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:42:49 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/09 10:37:52 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:23:37 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIDTH 1280
 # define WHITE_COLOR -1
 # define BLACK_COLOR 255
-# ifndef
+# ifndef PARSE
 #  define PARSE 0
 # endif
 
