@@ -6,27 +6,36 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:46:50 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/03 11:16:18 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:03:56 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/bonus/bonus.h"
 
-int	convert_color(char *str, t_fdf *var)
+static int	convert_hexa(int c)
 {
-	
+	if (c >= '0' && c <= '9')
+		return (c - 48);
+	else if (c >= 'A' && c <= 'F')
+		return (c - 55);
+	return (0);
 }
 
-int	get_color(int z, t_fdf *var)
+int	convert_color(char *str)
 {
-	if (z == var->z_max)
-		return (get_rgba(255, 0, 0, 255));
-	if (z == 0)
-		return (get_rgba(0, 255, 0, 255));
-	return (get_rgba(255, 255, 255, 255));
-}
+	int	i;
+	int	nb;
+	int	len;
 
-int get_rgba(int r, int g, int b, int a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
+	i = -1;
+	nb = 0;
+	while (str[++i])
+		str[i] = ft_toupper(str[i]);
+	len = ft_strlen(str);
+	while (len >= 0)
+	{
+		nb += convert_hexa(str[i - len]) * pow(16, len);
+		len--;
+	}
+	return (nb);
 }

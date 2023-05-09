@@ -1,6 +1,4 @@
 {
 	"C_Cpp.errorSquiggles": "disabled",
-	"files.associations": {
-		"bonus.h": "c"
-	}
+	"C_Cpp.dimInactiveRegions": false
 }

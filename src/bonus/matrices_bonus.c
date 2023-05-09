@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 10:07:26 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/01 12:58:10 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:05:57 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_coords	rotation_y(t_coords coords, t_fdf *var)
 	return (result);
 }
 
-static t_coords scale(t_coords coords, t_fdf *var)
+static t_coords	scale(t_coords coords, t_fdf *var)
 {
 	t_coords	result;
 

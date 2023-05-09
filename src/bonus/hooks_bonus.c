@@ -6,117 +6,35 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 12:45:50 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/01 16:40:48 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:29:48 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/bonus/bonus.h"
 
-static void	key_translate_up_down(mlx_key_data_t keydata, t_fdf *var)
+static void	speed_key(mlx_key_data_t keydata, t_fdf *var)
 {
-	if (keydata.key == MLX_KEY_UP && (keydata.action == MLX_PRESS \
+	if (keydata.key == MLX_KEY_Z && (keydata.action == MLX_PRESS \
 	|| keydata.action == MLX_REPEAT))
 	{
-		if (var->y_trans < INT_MAX)
+		if (var->speed < 100)
 		{
-			var->y_trans -= var->trans_speed;
+			var->speed += 1;
 			print_points(var);
 		}
 	}
-	if (keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS \
+	if (keydata.key == MLX_KEY_X && (keydata.action == MLX_PRESS \
 	|| keydata.action == MLX_REPEAT))
 	{
-		if (var->y_trans > INT_MIN)
+		if (var->speed > 1)
 		{
-			var->y_trans += var->trans_speed;
-			print_points(var);
-		}
-	}
-}
-
-static void key_translate_left_right(mlx_key_data_t keydata, t_fdf *var)
-{
-	if (keydata.key == MLX_KEY_LEFT && (keydata.action == MLX_PRESS \
-	|| keydata.action == MLX_REPEAT))
-	{
-		if (var->x_trans < INT_MAX)
-		{
-			var->x_trans -= var->trans_speed;
-			print_points(var);
-		}
-	}
-	if (keydata.key == MLX_KEY_RIGHT && (keydata.action == MLX_PRESS \
-	|| keydata.action == MLX_REPEAT))
-	{
-		if (var->x_trans > INT_MIN)
-		{
-			var->x_trans += var->trans_speed;
+			var->speed -= 1;
 			print_points(var);
 		}
 	}
 }
 
-static void	key_rotate_z(mlx_key_data_t keydata, t_fdf *var)
-{
-	if (keydata.key == MLX_KEY_E && (keydata.action == MLX_PRESS \
-	|| keydata.action == MLX_REPEAT))
-	{
-		var->z_deg += var->rotation_speed;
-		if (var->z_deg > 360)
-			var->z_deg -= 360;
-		print_points(var);
-	}
-	if (keydata.key == MLX_KEY_Q && (keydata.action == MLX_PRESS \
-	|| keydata.action == MLX_REPEAT))
-	{
-		var->z_deg -= var->rotation_speed;
-		if (var->z_deg < 360)
-			var->z_deg += 360;
-		print_points(var);
-	}
-}
-
-static void	key_rotate_x(mlx_key_data_t keydata, t_fdf *var)
-{
-	if (keydata.key == MLX_KEY_W && (keydata.action == MLX_PRESS \
-	|| keydata.action == MLX_REPEAT))
-	{
-		var->x_deg += var->rotation_speed;
-		if (var->x_deg > 360)
-			var->x_deg -= 360;
-		print_points(var);
-	}
-	if (keydata.key == MLX_KEY_S && (keydata.action == MLX_PRESS \
-	|| keydata.action == MLX_REPEAT))
-	{
-		var->x_deg -= var->rotation_speed;
-		if (var->x_deg < 0)
-			var->x_deg += 360;
-		print_points(var);
-	}
-}
-
-static void key_rotate_y(mlx_key_data_t keydata, t_fdf *var)
-{
-	if (keydata.key == MLX_KEY_D && (keydata.action == MLX_PRESS \
-	|| keydata.action == MLX_REPEAT))
-	{
-		var->y_deg += var->rotation_speed;
-		if (var->y_deg > 360)
-			var->y_deg -= 360;
-		print_points(var);
-	}
-	if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS \
-	|| keydata.action == MLX_REPEAT))
-	{
-		var->y_deg -= var->rotation_speed;
-		if (var->y_deg < 0)
-			var->y_deg += 360;
-		print_points(var);
-	}
-}
-
-void	projection_key(mlx_key_data_t keydata, t_fdf *var)
+static void	projection_key(mlx_key_data_t keydata, t_fdf *var)
 {
 	if (keydata.key == MLX_KEY_P && keydata.action == MLX_PRESS)
 	{
@@ -151,17 +69,18 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	key_rotate_z(keydata, var);
 	key_rotate_x(keydata, var);
 	key_rotate_y(keydata, var);
+	speed_key(keydata, var);
 }
 
-void	my_scrollhook(double xdelta, double ydelta, void* param)
+void	my_scrollhook(double xdelta, double ydelta, void *param)
 {
-	t_fdf *var;
+	t_fdf	*var;
 
 	xdelta = 0;
 	var = param;
 	if (ydelta > 0)
 	{
-		if (var->scale < 10000)
+		if (var->scale < 10)
 		{
 			var->scale *= 1.1;
 			print_points(var);

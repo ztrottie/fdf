@@ -43,7 +43,9 @@ BONUS_SRCS		=	main_bonus.c \
 					line_utils_bonus.c \
 					matrices_bonus.c \
 					hooks_bonus.c \
-					color_bonus.c
+					color_bonus.c \
+					rotation_hooks.c \
+					translation_hooks.c
 
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
 BONUS_OBJS		=	$(addprefix ${BINDIR}, ${BONUS_SRCS:.c=.o})
@@ -78,11 +80,11 @@ $(NAME2): $(BONUS_OBJS)
 
 clean:
 	@rm -fr $(BINDIR)
-	@rm -fr $(LIBMLX)/build
 	@$(MAKE) -C $(LIBFTDIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f $(NAME2)
 	@$(MAKE) -C $(LIBFTDIR) fclean
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:53:34 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/02 13:01:47 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:22:12 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ static int	point_parse(char **points, size_t len)
 	{
 		str = ft_split(points[i], ',');
 		if (ft_isint(str[0]))
-			return (ft_free(str), 0);
-		ft_free(str);
+			return (ft_x2free((void **)str), 0);
+		ft_x2free((void **)str);
 		i++;
 	}
 	return (1);
@@ -101,7 +101,7 @@ void	parse_map(t_fdf	*var)
 	len = ft_strlen_double(ptr->line);
 	while (ptr != NULL)
 	{
-		if (len != ft_strlen_double(ptr->line))
+		if (len != ft_strlen_double(ptr->line) && )
 			ft_exit("Lines should all have the amount of points\n", \
 			var, 0);
 		if (point_parse(ptr->line, len) == 0)

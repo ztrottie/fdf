@@ -6,26 +6,24 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:51:39 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/02 14:04:37 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:04:07 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/bonus/bonus.h"
 
-int	get_z_value(char *z, int index, t_fdf *var)
+static int	get_z_value(char *z, int index, t_fdf *var)
 {
 	int		z_value;
 	char	**str;
-	
+
 	str = ft_split(z, ',');
 	z_value = ft_atoi(str[0]) * 30;
 	if (!str[1])
 		var->coords[index].color = WHITE_COLOR;
 	else
-	{
-		var->coords[index].color = convert_color(str[1], var);
-	}
-	ft_free(str);
+		var->coords[index].color = convert_color(str[1] + 2);
+	ft_x2free((void **)str);
 	return (z_value - z_value / 2);
 }
 

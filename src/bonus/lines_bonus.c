@@ -6,13 +6,13 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:53:27 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/02 13:18:15 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:05:02 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/bonus/bonus.h"
 
-t_lines	swap_lines(t_lines lines)
+static t_lines	swap_lines(t_lines lines)
 {
 	int	tmp_x;
 	int	tmp_y;
@@ -26,7 +26,7 @@ t_lines	swap_lines(t_lines lines)
 	return (lines);
 }
 
-void	draw_line_low(t_fdf *var, t_lines lines)
+static void	draw_line_low(t_fdf *var, t_lines lines)
 {
 	t_draw	draw;
 
@@ -44,12 +44,12 @@ void	draw_line_low(t_fdf *var, t_lines lines)
 	{
 		if (lines.x1 < WIDTH && draw.y < HEIGHT \
 		&& lines.x1 >= 0 && draw.y >= 0)
-			mlx_put_pixel(var->img, lines.x1, draw.y, 4294967295);
+			mlx_put_pixel(var->img, lines.x1, draw.y, lines.color);
 		draw = p_calculus_low(draw);
 	}
 }
 
-void	draw_line_high(t_fdf *var, t_lines lines)
+static void	draw_line_high(t_fdf *var, t_lines lines)
 {
 	t_draw	draw;
 
@@ -67,7 +67,7 @@ void	draw_line_high(t_fdf *var, t_lines lines)
 	{
 		if (draw.x < WIDTH && lines.y1 < HEIGHT \
 		&& draw.x >= 0 && lines.y1 >= 0)
-			mlx_put_pixel(var->img, draw.x, lines.y1, get_color(lines.z2, var));
+			mlx_put_pixel(var->img, draw.x, lines.y1, lines.color);
 		draw = p_calculus_high(draw);
 	}
 }
@@ -104,20 +104,14 @@ void	print_lines(t_fdf *var)
 		x = i - (y * var->map_width);
 		lines.x1 = var->points[i].x;
 		lines.y1 = var->points[i].y;
-		lines.z1 = var->coords[i].z;
+		lines.color = var->coords[i].color;
 		if (x < var->map_width - 1)
 		{
-			lines.x2 = var->points[i + 1].x;
-			lines.y2 = var->points[i + 1].y;
-			lines.z2 = var->coords[i + 1].z;
-			draw_line(var, lines);
+			x_lines(lines, var, i);
 		}
 		if (y < var->map_height - 1)
 		{
-			lines.x2 = var->points[i + var->map_width].x;
-			lines.y2 = var->points[i + var->map_width].y;
-			lines.z2 = var->coords[i + var->map_width].z;
-			draw_line(var, lines);
+			y_lines(lines, var, i);
 		}
 	}
 }
