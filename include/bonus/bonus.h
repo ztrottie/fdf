@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:42:49 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/09 15:23:37 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:46:04 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # define WIDTH 1280
 # define WHITE_COLOR -1
 # define BLACK_COLOR 255
-# ifndef PARSE
-#  define PARSE 0
-# endif
 
 # include "../../lib/libft/libft.h"
 # include "../../lib/MLX42/include/MLX42/MLX42.h"
@@ -87,9 +84,8 @@ typedef struct s_fdf
 	float				scale;
 }	t_fdf;
 
-
 //Initialize
-void		init_coords(t_fdf *var);
+void		init_coords(t_fdf *var, int scale);
 
 //Input error
 int			args_error(int argc, char **argv);

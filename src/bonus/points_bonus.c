@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:53:37 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/03 16:22:33 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:37:30 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ static void	put_hud(t_fdf *var)
 	str2 = ft_strjoin(str, " [Z][X]");
 	var->hud[0] = mlx_put_string(var->mlx, "Buttons", 20, 20);
 	var->hud[1] = mlx_put_string(var->mlx, "Projection [P]", 20, 40);
-	var->hud[2] = mlx_put_string(var->mlx, "Rotation z:[A][D] x:[W][S] y:[Q][E]", 20, 60);
-	var->hud[3] = mlx_put_string(var->mlx, "Translate [UP][DOWN][LEFT][RIGHT]", 20, 80);
+	var->hud[2] = mlx_put_string(var->mlx, \
+	"Rotation z:[A][D] x:[W][S] y:[Q][E]", 20, 60);
+	var->hud[3] = mlx_put_string(var->mlx, \
+	"Translate [UP][DOWN][LEFT][RIGHT]", 20, 80);
 	var->hud[4] = mlx_put_string(var->mlx, "Zoom [SCROLL]", 20, 100);
 	var->hud[5] = mlx_put_string(var->mlx, str2, 20, 120);
 	ft_free(str2);

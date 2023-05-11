@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:18:01 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:35:05 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:19:35 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FDF_H
 # define HEIGHT 720
 # define WIDTH 1280
-
 # include "../../lib/libft/libft.h"
 # include "../../lib/MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
@@ -77,7 +76,7 @@ void	set_backgroud(t_fdf *var);
 char	**split_get_next_line(int fd, char split);
 size_t	ft_strlen_double(char **str);
 void	parse_map(t_fdf	*var);
-void	init_coords(t_fdf *var);
+void	init_coords(t_fdf *var, int scale);
 void	add_line_end(t_fdf *var, char **line);
 void	convert_map(t_fdf *var);
 void	print_points(t_fdf *var);

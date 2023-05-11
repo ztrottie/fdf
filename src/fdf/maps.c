@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 13:38:11 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:35:50 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:34:02 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,15 @@ int	open_map(t_fdf *var)
 static int	point_parse(char **points, size_t len)
 {
 	size_t	i;
+	char	**str;
 
 	i = 0;
 	while (i < len - 1)
 	{
-		if (ft_isint(points[i]))
-			return (0);
+		str = ft_split(points[i], ',');
+		if (ft_isint(str[0]))
+			return (ft_x2free((void **)str), 0);
+		ft_x2free((void **)str);
 		i++;
 	}
 	return (1);

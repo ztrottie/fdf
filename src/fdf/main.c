@@ -6,7 +6,7 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:17:54 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 09:50:47 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/11 13:19:40 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ static void	my_keyhook(mlx_key_data_t keydata, void *param)
 int	main(int argc, char **argv)
 {
 	t_fdf	var;
+	int		scale;
 
 	if (args_error(argc, argv))
 		return (0);
 	init_variables(argv, &var);
 	parse_map(&var);
-	init_coords(&var);
+	scale = (WIDTH / var.map_width) / 2;
+	init_coords(&var, scale);
 	var.mlx = mlx_init(WIDTH, HEIGHT, "fdf", 0);
 	if (var.mlx == NULL)
 		ft_exit("MLX_INIT\n", &var, 0);

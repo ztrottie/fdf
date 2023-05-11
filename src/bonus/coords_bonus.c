@@ -6,19 +6,19 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 09:51:39 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/05/03 14:04:07 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:10:10 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/bonus/bonus.h"
 
-static int	get_z_value(char *z, int index, t_fdf *var)
+static int	get_z_value(char *z, int index, t_fdf *var, int scale)
 {
 	int		z_value;
 	char	**str;
 
 	str = ft_split(z, ',');
-	z_value = ft_atoi(str[0]) * 30;
+	z_value = ft_atoi(str[0]) * scale;
 	if (!str[1])
 		var->coords[index].color = WHITE_COLOR;
 	else
@@ -27,7 +27,7 @@ static int	get_z_value(char *z, int index, t_fdf *var)
 	return (z_value - z_value / 2);
 }
 
-void	init_coords(t_fdf *var)
+void	init_coords(t_fdf *var, int scale)
 {
 	t_map	*ptr;
 	int		i;
@@ -44,9 +44,9 @@ void	init_coords(t_fdf *var)
 		x = 0;
 		while (x < var->map_width)
 		{
-			var->coords[i].x = ((x - ((var->map_width - 1) / 2)) * 30);
-			var->coords[i].y = ((y - ((var->map_height - 1) / 2)) * 30);
-			var->coords[i].z = get_z_value(ptr->line[x], i, var);
+			var->coords[i].x = ((x - ((var->map_width - 1) / 2)) * scale);
+			var->coords[i].y = ((y - ((var->map_height - 1) / 2)) * scale);
+			var->coords[i].z = get_z_value(ptr->line[x], i, var, scale);
 			x++;
 			i++;
 		}

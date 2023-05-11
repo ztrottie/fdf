@@ -6,21 +6,21 @@
 /*   By: ztrottie <ztrottie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:46:00 by ztrottie          #+#    #+#             */
-/*   Updated: 2023/04/30 11:32:39 by ztrottie         ###   ########.fr       */
+/*   Updated: 2023/05/11 13:18:44 by ztrottie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/fdf/fdf.h"
 
-int	get_z_value(char *z)
+static int	get_z_value(char *z, int scale)
 {
 	int	z_value;
 
-	z_value = ft_atoi(z) * 30;
+	z_value = ft_atoi(z) * scale;
 	return (z_value - z_value / 2);
 }
 
-void	init_coords(t_fdf *var)
+void	init_coords(t_fdf *var, int scale)
 {
 	t_map	*ptr;
 	int		i;
@@ -37,9 +37,9 @@ void	init_coords(t_fdf *var)
 		x = 0;
 		while (x < var->map_width)
 		{
-			var->coords[i].x = (x - ((var->map_width - 1) / 2)) * 30;
-			var->coords[i].y = (y - ((var->map_height - 1) / 2)) * 30;
-			var->coords[i].z = get_z_value(ptr->line[x]);
+			var->coords[i].x = (x - ((var->map_width - 1) / 2)) * scale;
+			var->coords[i].y = (y - ((var->map_height - 1) / 2)) * scale;
+			var->coords[i].z = get_z_value(ptr->line[x], scale);
 			x++;
 			i++;
 		}

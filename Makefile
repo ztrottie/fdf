@@ -18,6 +18,11 @@ LIBFT			=	$(LIBFTDIR)/libft.a
 CC				=	gcc
 CFLAGS			=	-Wextra -Wall -Werror -Wunreachable-code -Ofast
 
+COLOUR_GREEN	=	\033[0;32m
+COLOUR_YELLOW	=	\033[0;33m
+COLOUR_RED		=	\033[0;31m
+COLOUR_END		=	\033[0m
+
 FDF_SRCS		=	main.c \
 					error.c \
 					maps.c \
@@ -50,7 +55,7 @@ BONUS_SRCS		=	main_bonus.c \
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
 BONUS_OBJS		=	$(addprefix ${BINDIR}, ${BONUS_SRCS:.c=.o})
 
-all: $(BINDIR) libmlx libft $(NAME)
+all:  $(BINDIR) libmlx libft $(NAME)
 
 ${BINDIR}%.o: ${FDF_DIR}%.c
 	@${CC} ${CFLAGS} -c $< -o $@
@@ -62,7 +67,7 @@ libft:
 	@$(MAKE) -C $(LIBDIR)libft
 
 $(LIBMLX):
-	@cd $(LIBDIR) && git clone https://github.com/codam-coding-college/MLX42.git
+	@cd $(LIBDIR) && git clone  -b v2.3.1 https://github.com/codam-coding-college/MLX42.git
 
 libmlx: $(LIBMLX)
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
@@ -78,6 +83,15 @@ bonus: $(BINDIR) libmlx libft $(NAME2)
 $(NAME2): $(BONUS_OBJS)
 	@$(CC) $(BONUS_OBJS) $(LIBFT) $(LIBS) $(HEADERS_BONUS) -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit -o $(NAME2)
 
+brew:
+	@if command -v brew >/dev/null 2>&1; then \
+        echo "$(COLOUR_YELLOW)Homebrew is not installed. Please follow the instructions of this website to install it:$(COLOUR_END) $(COLOUR_GREEN)https://brew.sh/index_fr$(COLOUR_END)"; \
+    else \
+        echo "Homebrew is already installed."; \
+		brew install cmake; \
+		brew install glfw; \
+    fi
+
 clean:
 	@rm -fr $(BINDIR)
 	@$(MAKE) -C $(LIBFTDIR) clean
@@ -89,4 +103,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re, libmlx, libft
+.PHONY: all, clean, fclean, re, libmlx, libft, brew

@@ -6,7 +6,7 @@
 # CMake specifications
 # -----------------------------------------------------------------------------
 cmake_minimum_required (VERSION 3.18.0)
-project(mlx42 VERSION 2.3.1)
+project(mlx42 VERSION 2.3.0)
 message(STATUS "MLX42 @ ${CMAKE_PROJECT_VERSION}")
 
 # Variables
@@ -18,7 +18,6 @@ set(CMAKE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
