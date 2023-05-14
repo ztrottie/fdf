@@ -1,3 +1,0 @@
-/Users/ztrottie/Documents/fdf/lib/MLX42/build/CMakeFiles/mlx42.dir
-/Users/ztrottie/Documents/fdf/lib/MLX42/build/CMakeFiles/edit_cache.dir
-/Users/ztrottie/Documents/fdf/lib/MLX42/build/CMakeFiles/rebuild_cache.dir

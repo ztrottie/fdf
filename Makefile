@@ -55,7 +55,7 @@ BONUS_SRCS		=	main_bonus.c \
 FDF_OBJS		=	$(addprefix ${BINDIR}, ${FDF_SRCS:.c=.o})
 BONUS_OBJS		=	$(addprefix ${BINDIR}, ${BONUS_SRCS:.c=.o})
 
-all:  $(BINDIR) libmlx libft $(NAME)
+all:  brew $(BINDIR) libmlx libft $(NAME)
 
 ${BINDIR}%.o: ${FDF_DIR}%.c
 	@${CC} ${CFLAGS} -c $< -o $@
@@ -78,18 +78,26 @@ $(NAME): $(FDF_OBJS)
 $(BINDIR):
 	@mkdir -p bin
 
-bonus: $(BINDIR) libmlx libft $(NAME2)
+bonus: brew $(BINDIR) libmlx libft $(NAME2)
 
 $(NAME2): $(BONUS_OBJS)
 	@$(CC) $(BONUS_OBJS) $(LIBFT) $(LIBS) $(HEADERS_BONUS) -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit -o $(NAME2)
 
 brew:
 	@if command -v brew >/dev/null 2>&1; then \
-        echo "$(COLOUR_YELLOW)Homebrew is not installed. Please follow the instructions of this website to install it:$(COLOUR_END) $(COLOUR_GREEN)https://brew.sh/index_fr$(COLOUR_END)"; \
+        echo "$(COLOUR_GREEN)Homebrew is already installed.$(COLOUR_END)"; \
+		if command -v cmake >/dev/null 2>&1; then \
+			echo "$(COLOUR_GREEN)cmake is already installed.$(COLOUR_END)"; \
+		else \
+			echo "$(COLOUR_RED)cmake is not installed. Please follow the instructions to install it: $(COLOUR_GREEN)brew install Cmake$(COLOUR_END)"; \
+		fi; \
+		if command -v brew --version glfw >/dev/null 2>&1; then \
+			echo "$(COLOUR_GREEN)glfw is already installed.$(COLOUR_END)"; \
+		else \
+			echo "$(COLOUR_RED)glfw is not installed. Please follow the instructions to install it: $(COLOUR_GREEN)brew install glfw$(COLOUR_END)"; \
+		fi \
     else \
-        echo "Homebrew is already installed."; \
-		brew install cmake; \
-		brew install glfw; \
+        echo "$(COLOUR_YELLOW)Homebrew is not installed. Please follow the instructions of this website to install it: $(COLOUR_GREEN)https://brew.sh/index_fr$(COLOUR_END)"; \
     fi
 
 clean:
@@ -99,6 +107,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(NAME2)
+	@rm -fr $(LIBMLX)/build
 	@$(MAKE) -C $(LIBFTDIR) fclean
 
 re: fclean all
