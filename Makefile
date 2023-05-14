@@ -67,7 +67,7 @@ libft:
 	@$(MAKE) -C $(LIBDIR)libft
 
 $(LIBMLX):
-	@cd $(LIBDIR) && git clone  -b v2.3.1 https://github.com/codam-coding-college/MLX42.git
+	@cd $(LIBDIR) && git clone -b v2.3.1 https://github.com/codam-coding-college/MLX42.git
 
 libmlx: $(LIBMLX)
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
@@ -102,12 +102,13 @@ brew:
 
 clean:
 	@rm -fr $(BINDIR)
+	@rm -fr $(LIBMLX)/build
 	@$(MAKE) -C $(LIBFTDIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(NAME2)
-	@rm -fr $(LIBMLX)/build
+	@rm -fr $(LIBMLX)
 	@$(MAKE) -C $(LIBFTDIR) fclean
 
 re: fclean all
