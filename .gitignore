@@ -49,4 +49,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-lib/MLX42/
+MLX42/
