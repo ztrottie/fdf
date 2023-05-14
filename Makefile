@@ -102,13 +102,12 @@ brew:
 
 clean:
 	@rm -fr $(BINDIR)
-	@rm -fr $(LIBMLX)/build
 	@$(MAKE) -C $(LIBFTDIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(NAME2)
-	@rm -fr $(LIBMLX)
+	@rm -fr $(LIBMLX)/build
 	@$(MAKE) -C $(LIBFTDIR) fclean
 
 re: fclean all
